@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { StateProvider } from "./context/State";
+import "./assets/css/styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Container from "react-bootstrap/Container";
+import PageStoreContainer from "./containers/PageStoreContainer";
+import mainReducer from './context/reducers/mainReducer'
 
 function App() {
+  const initialState = {
+    user: {
+      name: "",
+      points: 0,
+    },
+    products: [],
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StateProvider initialState={initialState} reducer={mainReducer}>
+      <Container fluid>
+        <div className="App">
+          <PageStoreContainer />
+        </div>
+      </Container>
+    </StateProvider>
   );
 }
 

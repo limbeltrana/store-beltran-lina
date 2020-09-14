@@ -1,0 +1,334 @@
+body {
+  position: absolute;
+  width: 100%;
+  height: 2055px;
+  left: 0px;
+  top: 0px;
+  background: #f9f9f9;
+}
+
+.top {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  left: 0px;
+  top: 0px;
+}
+
+.profile {
+  position: absolute;
+  width: 215px;
+  height: 48px;
+  /* left: 1183px; */
+  top: 16px;
+  right: 2%;
+}
+
+.profile > .userName {
+  /* position: absolute; */
+  height: 48px;
+  left: 0%;
+  right: 60.47%;
+  top: calc(50% - 48px / 2);
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 48px;
+  /* identical to box height, or 200% */
+
+  letter-spacing: -0.15px;
+
+  color: #616161;
+  display: flex;
+}
+
+.pointsAvailable {
+  position: absolute;
+  left: 52.09%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+}
+
+.pointsAvailable p {
+  position: absolute;
+  height: 48px;
+  left: 12.62%;
+  right: 40.78%;
+  top: calc(50% - 48px / 2);
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 48px;
+  /* identical to box height, or 200% */
+  letter-spacing: -0.15px;
+  color: #616161;
+}
+
+.pointsAvailable .money {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 67px;
+  top: 12px;
+}
+
+.profile > .pointsAvailable .Rectangle {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+  background: #ededed;
+  border-radius: 20.5px;
+}
+
+.logo {
+  position: absolute;
+  width: 38.77px;
+  height: 36px;
+  left: 42px;
+  top: 22px;
+  /* background: linear-gradient(180deg, #ff8800 0%, #ff6600 100%); */
+}
+
+.header {
+  position: absolute;
+  width: 100%;
+  height: 412px;
+  left: 0px;
+  top: 80px;
+}
+
+.box {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+}
+
+.cover {
+  position: absolute;
+  width: 100%;
+  height: 412px;
+  left: 0px;
+  top: 0px;
+}
+
+.headerImage {
+  position: absolute;
+  width: 100%;
+  height: 412px;
+  left: 0px;
+  top: 0px;
+}
+
+.headerText {
+  position: absolute;
+  height: 80px;
+  left: 9.17%;
+  right: 69.03%;
+  top: calc(50% - 80px / 2 + 118px);
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 80px;
+
+  color: #ffffff;
+}
+
+.products {
+  position: absolute;
+  width: 100%;
+  height: 1188px;
+  left: 0px;
+  top: 660px;
+}
+
+.line {
+  position: absolute;
+  width: 100%;
+  height: 288px;
+  left: 0px;
+  top: 660px;
+}
+
+.addPointsMenu {
+  position: absolute;
+  width: 100%;
+  height: 74px;
+  left: 0px;
+  top: 556px;
+}
+
+.addPointsMenu .buttonPoint {
+  position: absolute;
+  left: 27.21%;
+  right: 58.93%;
+  top: 0%;
+  bottom: 33.78%;
+}
+
+.addPointsMenu .buttonPoint .roundedBackForm {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 2.04%;
+  bottom: 0%;
+
+  background: #ededed;
+  border-radius: 20.5px;
+}
+
+.buttonPoint > .roundedBackForm > p {
+  position: absolute;
+  height: 48px;
+  left: 13.48%;
+  right: 13.48%;
+  top: calc(50% - 48px / 2 - 0.5px);
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 48px;
+  /* identical to box height, or 200% */
+
+  letter-spacing: -0.15px;
+
+  color: #a3a3a3;
+}
+
+.addPointsMenu .buttonPoint2 {
+  position: absolute;
+  left: 43.11%;
+  right: 42.26%;
+  top: 0%;
+  bottom: 33.78%;
+}
+
+.addPointsMenu .buttonPoint2 .roundedBackForm2 {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 2.04%;
+  bottom: 0%;
+
+  background: #ededed;
+  border-radius: 20.5px;
+}
+
+.addPointsMenu .buttonPoint3 {
+  position: absolute;
+  left: 59.78%;
+  right: 25.09%;
+  top: 0%;
+  bottom: 33.78%;
+}
+
+.addPointsMenu .buttonPoint3 .roundedBackForm3 {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 2.04%;
+  bottom: 0%;
+
+  background: #ededed;
+  border-radius: 20.5px;
+}
+
+.addPointsMenu .selection {
+  position: absolute;
+  height: 48px;
+  left: 13.48%;
+  right: 13.48%;
+  top: calc(50% - 48px / 2 - 0.5px);
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 48px;
+  /* identical to box height, or 200% */
+
+  letter-spacing: -0.15px;
+
+  color: #a3a3a3;
+}
+
+.addPointsMenu .selection label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  margin-left: 25%;
+}
+
+.addPointsMenu hr {
+  position: absolute;
+  left: 3%;
+  right: 0%;
+  top: 98.65%;
+  bottom: 0%;
+  width: 90%;
+  background: #d9d9d9;
+  margin-top: 0;
+}
+
+.addPointsMenu div.v1 {
+  position: absolute;
+  left: 24.5%;
+  right: 75.42%;
+  top: 0%;
+  bottom: 33.78%;
+  background: #d9d9d9;
+}
+
+.addPointsMenu .textData {
+  position: absolute;
+  height: 48px;
+  left: 7%;
+  /* right: 85.54%; */
+  top: calc(50% - 48px / 2 - 12px);
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 48px;
+  /* identical to box height, or 200% */
+
+  letter-spacing: -0.15px;
+
+  color: #616161;
+}
+
+.addPointsMenu button {
+  position: absolute;
+  left: 78.78%;
+  /* right: 8.09%; */
+  top: 0%;
+  bottom: 33.78%;
+  border-radius: 1.5rem;
+  border: 2px solid steelblue;
+  width: 18%;
+  background-color: #6ee8ff;
+}
+
+.addPointsMenu button:hover {
+  background-color: #ededed; /* Green */
+  color: black;
+  border: 2px solid #a3b3c9;
+}
+.productCard {
+  position: absolute;
+  width: 276px;
+  height: 276px;
+  /* left: 1032px; */
+  top: 672px;
+}
