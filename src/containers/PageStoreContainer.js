@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import AddPoints from '../components/AddPoints'
+import AddPoints from "../components/AddPoints";
 import HeaderImage from "../components/HeaderImage";
 import TopProfile from "../components/TopProfile";
 import Card from "../components/Card";
-import { getProducts, getUser } from "../components/FetchRequest";
+import {
+  getProducts,
+  getUser,
+  PostApiAddUserPoints,
+} from "../components/FetchRequest";
 import configuration from "../config";
 import { useStateValue } from "../context/State";
 
 const PageStoreContainer = () => {
   const [{ products, user }, dispatch] = useStateValue();
-  const [addPointsByUser, setAddPointsByUser] = useStateValue()
-
+  const [addPointsByUser, setAddPointsByUser] = useState({ points: 0 });
 
   useEffect(() => {
     getDataUser();
@@ -20,6 +23,10 @@ const PageStoreContainer = () => {
       configuration.Token
     );
   }, []);
+
+  useEffect(() => {
+    getDataUser();
+  }, [user.points]);
 
   const getDataUser = async () => {
     let url = `${configuration.Api}${configuration.User}`;
@@ -44,16 +51,47 @@ const PageStoreContainer = () => {
     });
   };
 
-const handleChangePoints = () =>{
-  
-}
+  const handleChangePoints = (e) => {
+    setAddPointsByUser({
+      ...addPointsByUser,
+      [e.target.name]: e.target.value,
+    });
+  };
 
+  const postAddPointsUser = async () => {
+    let url = `${configuration.Api}${configuration.AddPoints}`;
+    let pointsToSend = { amount: parseInt(addPointsByUser.points) };
+    let data = await PostApiAddUserPoints(
+      url,
+      JSON.stringify(pointsToSend),
+      configuration.Token
+    );
+    console.log(JSON.stringify(pointsToSend));
+    let resApi = await data.json();
+    console.log(resApi);
+    dispatch({
+      type: "GET_USER",
+      user: {
+        ...user,
+        points: resApi["New Points"],
+      },
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postAddPointsUser();
+  };
   return (
     <>
       <TopProfile user={user} />
       <HeaderImage />
-      <AddPoints />
-      <Card />
+      <AddPoints
+        addPointsForm={addPointsByUser}
+        onChange={handleChangePoints}
+        onSubmit={handleSubmit}
+      />
+      <Card products={products.products} />
     </>
   );
 };

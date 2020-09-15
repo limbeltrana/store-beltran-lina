@@ -1,16 +1,22 @@
 import React from "react";
 
-const AddPoints = () => {
+const AddPoints = ({ onChange, onSubmit} ) => {
   return (
     <>
       <div className="addPointsMenu">
-        <form>
+        <form onSubmit ={onSubmit}>
           <div className="buttonPoint">
             <div className="roundedBackForm">
               {/* <p>1000</p> */}
               <div className="selection">
-                <input type="radio" id="1000" name="points" value="1000" />
-                <label for="addPoint">1000</label>
+                <input
+                  type="radio"
+                  id="1000"
+                  name="points"
+                  value={1000}
+                  onChange={onChange}
+                />
+                <label htmlFor="points">1000</label>
               </div>
             </div>
           </div>
@@ -19,8 +25,14 @@ const AddPoints = () => {
             <div className="roundedBackForm2">
               {/* <p>1000</p> */}
               <div className="selection">
-                <input type="radio" id="5000" name="points" value="5000" />
-                <label for="addPoint">5000</label>
+                <input
+                  type="radio"
+                  id="5000"
+                  name="points"
+                  value={5000}
+                  onChange={onChange}
+                />
+                <label htmlFor="points">5000</label>
               </div>
             </div>
           </div>
@@ -29,12 +41,18 @@ const AddPoints = () => {
             <div className="roundedBackForm3">
               {/* <p>1000</p> */}
               <div className="selection">
-                <input type="radio" id="7500" name="points" value="7500" />
-                <label for="addPoint">7500</label>
+                <input
+                  type="radio"
+                  id="7500"
+                  name="points"
+                  value={7500}
+                  onChange={onChange}
+                />
+                <label htmlFor="points">7500</label>
               </div>
             </div>
           </div>
-          <button type= 'submit' className='addPointsButton'>
+          <button type="submit" className="addPointsButton">
             Agregar puntos
           </button>
         </form>

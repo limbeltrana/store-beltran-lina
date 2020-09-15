@@ -8,8 +8,6 @@ export const getUser = async (url, token) => {
         Authorization: `Bearer ${token}`,
       },
     };
-    console.log(url);
-    console.log(config);
     return await fetch(url, config);
   } catch (error) {
     console.log(error);
@@ -27,8 +25,6 @@ export const getProducts = async (url,token) => {
           "Authorization": `Bearer ${token}`,
         },
       };
-      console.log(url)
-      console.log(config)
       return await fetch(url,config)
   } catch (error) {
     console.log(error);
