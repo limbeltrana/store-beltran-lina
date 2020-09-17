@@ -12,7 +12,7 @@ const TopProfile = ({ user }) => {
           <div className="pointsAvailable">
             <div className="Rectangle">
               <p>{user.points}</p>
-              <img src={Coin} className="money " />
+              <img src={Coin} className="money" />
             </div>
           </div>
         </div>
