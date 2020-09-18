@@ -496,4 +496,135 @@ body {
   border-radius: 2rem;
 }
 
+.productCard .you-need {
+  position: absolute;
+  visibility: hidden;
+  width: 170px;
+  height: 42px;
+  top: 12px;
+  right: 12px;
+}
 
+.productCard .you-need .gray-chip {
+  position: absolute;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  background: #616161;
+  mix-blend-mode: normal;
+  opacity: 0.8;
+  border-radius: 100px;
+}
+
+.productCard .you-need p {
+  position: absolute;
+  height: 18px;
+  left: 7.56%;
+  right: 24.87%;
+  top: calc(50% - 18px / 2 - 1px);
+
+  font-family: Source Sans Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  /* identical to box height */
+
+  text-align: right;
+  letter-spacing: -0.0329412px;
+
+  color: #ffffff;
+}
+
+.productCard .you-need .you-need-money {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 140px;
+  top: 11px;
+}
+
+/* Estas son las opciones del popup*/
+
+.overlay {
+  overflow: scroll;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  /* transition: opacity 500ms; */
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  /* transition: all 5s ease-in-out; */
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06d85f;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .popup {
+    width: 100%;
+  }
+
+  #popup1 {
+    padding-left: 0 !important;
+  }
+}
+
+.overlay .inner-popup-container {
+  height: 50vw;
+  width: 100vh;
+  /* background: linear-gradient(45deg, #0e545f, transparent); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay .own-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: chartreuse;
+  width: 70%;
+  height: 50%;
+  border-radius: 2rem;
+  /* background: linear-gradient(45deg, #0e545f, transparent); */
+}

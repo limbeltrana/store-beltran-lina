@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import BuyBlue from "../assets/images/buy-blue.svg";
 import BuyWhite from "../assets/images/buy-white.svg";
 import Coin from "../assets/images/coin.svg";
@@ -7,34 +7,60 @@ const Card = ({
   productImage,
   category,
   productName,
-  products,
-  showProducts,
+  cost,
+  availableUserPoints,
+  productId,
+  postRedeemUserPoints
 }) => {
   const overlayContainer = useRef();
-
-  /*   let productsArray = products ? products : [];
-
-  ; */
+  const youNeed = useRef();
   return (
     <div
       className="productCard"
-      onMouseOver={() =>
+      onMouseOver={() => {
+        if (cost < availableUserPoints) {
+          return (overlayContainer.current.style.visibility = "visible");
+        } else {
+          return (youNeed.current.style.visibility = "visible");
+        }
+      }}
+      /*  onMouseOver={() =>
         (overlayContainer.current.style.visibility = "visible")
-      }
-      onMouseOut={() => (overlayContainer.current.style.visibility = "hidden")}
+      } */
+      onMouseOut={() => (
+        (overlayContainer.current.style.visibility = "hidden"),
+        (youNeed.current.style.visibility = "hidden")
+      )}
     >
       <div ref={overlayContainer} className="overlayCard">
         <div className="overlay_card_inner">
           <div className="buyWhiteIcon">
             <img src={BuyWhite} alt="buy_white" />
           </div>
+
           <div className="center-money-button">
             <div className="cardMoney">
-              <p>12000</p>
+              <p>{cost}</p>
               <img src={Coin} />
             </div>
-            <button className="buttonReddem">Redimir Ahora</button>
+            <button
+              className="buttonReddem"
+              onClick={() => {
+                console.log(productId);
+                console.log(productName);
+                postRedeemUserPoints(productId);
+              }}
+            >
+              Redimir Ahora
+            </button>
           </div>
+        </div>
+      </div>
+
+      <div ref={youNeed} className="you-need">
+        <div className="gray-chip">
+          <p>Tu necesitas {cost - availableUserPoints}</p>
+          <img src={Coin} className="you-need-money" />
         </div>
       </div>
 
@@ -55,89 +81,3 @@ const Card = ({
   );
 };
 export default Card;
-
-/* return (<div className="products">
-      <div className="line">
-        {productsArray.map((product) => {
-          return (
-            <div
-              key={product.id}
-              className="productCard"
-              onMouseOver={overlayCard}
-              onMouseOut={() => setShowHoverCard(false)}
-            >
-              <div
-                className={`internal_card${showHoverCard ? "_overlay" : ""}`}
-              >
-                <div className="buyBlueIcon">
-                  <img
-                    src={showHoverCard ? BuyWhite : BuyBlue}
-                    alt="buy_blue_icon"
-                  />
-                </div>
-                {showHoverCard ? (
-                  <>
-                    <div className="cardMoney">
-                      <p>12000</p>
-                      <img src={Coin} />
-                    </div>
-                    <button className="buttonReddem">Redimir Ahora</button>
-                  </>
-                ) : null}
-
-                <div className="photo">
-                  <img src={product.img.url} alt="product_image" />
-                </div>
-
-                <div className="info">
-                  <p className="productCategory">{product.category}</p>
-                  <p className="productName">{product.name}</p>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  ); */
-
-/* 
-  return (
-    <div className="products">
-      <div className="line">
-        <div
-          key={key}
-          className="productCard"
-          onMouseOver={overlayCard}
-          onMouseOut={() => setShowHoverCard(false)}
-        >
-          <div className={`internal_card${showHoverCard ? "_overlay" : ""}`}>
-            <div className="buyBlueIcon">
-              <img
-                src={showHoverCard ? BuyWhite : BuyBlue}
-                alt="buy_blue_icon"
-              />
-            </div>
-            {showHoverCard ? (
-              <>
-                <div className="cardMoney">
-                  <p>12000</p>
-                  <img src={Coin} />
-                </div>
-                <button className="buttonReddem">Redimir Ahora</button>
-              </>
-            ) : null}
-
-            <div className="photo">
-              <img src={productImage} alt="product_image" />
-            </div>
-
-            <div className="info">
-              <p className="productCategory">{category}</p>
-              <p className="productName">{productName}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  ); */
