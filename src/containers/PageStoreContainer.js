@@ -5,6 +5,9 @@ import TopProfile from "../components/TopProfile";
 import Card from "../components/Card";
 import Popup from "../components/Popup";
 import CardUserResponse from "../components/CardUserResponse";
+import successImg from "../assets/images/succesImg.gif";
+import failImg from "../assets/images/failImg.gif";
+import Pagination from "../components/Pagination";
 import {
   getProducts,
   getUser,
@@ -20,6 +23,10 @@ const PageStoreContainer = () => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [cardColor, setCardColor] = useState("");
   const [messageToUser, setMessageToUser] = useState("");
+  const [responseImg, setResponseImg] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPages, setCurrentPages] = useState([]);
+  const productsPerPage = 10;
 
   useEffect(() => {
     getDataUser();
@@ -29,6 +36,11 @@ const PageStoreContainer = () => {
       configuration.Token
     );
   }, []);
+
+  useEffect(() => {
+    displayProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [products, currentPage]);
 
   useEffect(() => {
     getDataUser();
@@ -90,9 +102,12 @@ const PageStoreContainer = () => {
     postAddPointsUser();
   };
 
-  function alertFunction() {
+  /*  function alertFunction() {
     setIsPopupVisible(true);
-    setCardColor("chartreuse");
+    setCardColor(
+      "linear-gradient(45deg, #fbb59d, #f6a69c, #f1979c, #f08f9c, #ee8d9b)"
+    );
+    setResponseImg(successImg);
     setMessageToUser("Tu compra fue exitosa!!");
   }
 
@@ -100,7 +115,7 @@ const PageStoreContainer = () => {
     setTimeout(alertFunction, 10000);
     console.log("me cambieeeeee", isPopupVisible);
   }
-  myFunction();
+  myFunction(); */
 
   const postRedeemUsePoints = async (Id) => {
     let url = `${configuration.Api}${configuration.RedeemPoints}`;
@@ -116,12 +131,20 @@ const PageStoreContainer = () => {
     console.log(resApi);
     if (resApi.message === "You've redeem the product successfully") {
       setIsPopupVisible(true);
-      setCardColor("chartreuse");
+      setCardColor(
+        "linear-gradient(45deg, #fbb59d, #f6a69c, #f1979c, #f08f9c, #ee8d9b)"
+      );
+      setResponseImg(successImg);
       setMessageToUser("Tu compra fue exitosa!!");
-    } else{
+    } else {
       setIsPopupVisible(true);
-      setCardColor("background: linear-gradient(45deg, #ee8d9b, #fbb59d);");
-      setMessageToUser("Lo sentimos hubo un inconveniente por favor intenta de nuevo!!");
+      setResponseImg(failImg);
+      setCardColor(
+        "linear-gradient(215deg, rgba(157,218,168,1) 0%, rgba(165,218,150,1) 20%, rgba(165,218,150,1) 40%, rgba(171,218,135,1) 60%, rgba(173,218,132,1) 80%, rgba(176,219,125,1) 100%)"
+      );
+      setMessageToUser(
+        "Lo sentimos hubo un inconveniente por favor intenta de nuevo!!"
+      );
     }
     /* dispatch({
       type: "GET_USER",
@@ -145,9 +168,20 @@ const PageStoreContainer = () => {
           cost={product.cost}
           availableUserPoints={user.points}
           postRedeemUserPoints={postRedeemUsePoints}
+          currentPages={currentPages}
         />
       );
     });
+  };
+  const displayProducts = () => {
+    let indexOfLastProducts = currentPage * productsPerPage;
+    let indexOfFirstProducts = indexOfLastProducts - productsPerPage;
+    let productsQuantity = products.products ? products.products : [];
+    console.log(products.products);
+    console.log(indexOfLastProducts, indexOfFirstProducts, productsQuantity);
+    setCurrentPages(
+      productsQuantity.slice(indexOfFirstProducts, indexOfLastProducts)
+    );
   };
 
   return (
@@ -164,9 +198,20 @@ const PageStoreContainer = () => {
       </div>
       <Popup isPopupVisible={isPopupVisible}>
         <div className="inner-popup-container">
-          <CardUserResponse />
+          <CardUserResponse
+            color={{ "--cardColor": cardColor }}
+            image={responseImg}
+            msg={messageToUser}
+            setIsPopupVisible={setIsPopupVisible}
+          />
         </div>
       </Popup>
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        productsPerPage={productsPerPage}
+        allProducts={products}
+      />
     </>
   );
 };

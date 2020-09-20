@@ -494,6 +494,7 @@ body {
   height: 42px;
   background: #dadada;
   border-radius: 2rem;
+  border: 2px solid steelblue;
 }
 
 .productCard .you-need {
@@ -565,49 +566,6 @@ body {
   opacity: 1;
 }
 
-.popup {
-  margin: 70px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 5px;
-  width: 30%;
-  position: relative;
-  /* transition: all 5s ease-in-out; */
-}
-
-.popup h2 {
-  margin-top: 0;
-  color: #333;
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
-}
-.popup .close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  transition: all 200ms;
-  font-size: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  color: #333;
-}
-.popup .close:hover {
-  color: #06d85f;
-}
-.popup .content {
-  max-height: 30%;
-  overflow: auto;
-}
-
-@media screen and (max-width: 700px) {
-  .popup {
-    width: 100%;
-  }
-
-  #popup1 {
-    padding-left: 0 !important;
-  }
-}
-
 .overlay .inner-popup-container {
   height: 50vw;
   width: 100vh;
@@ -622,9 +580,45 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: chartreuse;
+  background: var(--cardColor);
   width: 70%;
   height: 50%;
   border-radius: 2rem;
   /* background: linear-gradient(45deg, #0e545f, transparent); */
+}
+
+.overlay .own-popup .close-image {
+  position: relative;
+  left: 11rem;
+  top: 0.5rem;
+  cursor: pointer;
+  cursor: hand;
+}
+.overlay .own-popup .response-image {
+  vertical-align: middle;
+  border-style: none;
+  height: 180px;
+  width: auto;
+}
+
+.overlay .own-popup p {
+  font-weight: bold;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 2rem;
+}
+
+@media screen and (max-width: 700px) {
+  .own-popup {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  #popup1 {
+    padding-left: 0 !important;
+  }
+
+  .close-image {
+    left: 9rem !important;
+  }
 }
