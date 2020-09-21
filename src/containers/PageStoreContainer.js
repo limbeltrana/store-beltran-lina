@@ -8,6 +8,7 @@ import CardUserResponse from "../components/CardUserResponse";
 import successImg from "../assets/images/succesImg.gif";
 import failImg from "../assets/images/failImg.gif";
 import Pagination from "../components/Pagination";
+import FormFilter from "../components/FormFilter";
 import {
   getProducts,
   getUser,
@@ -25,16 +26,17 @@ const PageStoreContainer = () => {
   const [messageToUser, setMessageToUser] = useState("");
   const [responseImg, setResponseImg] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentPages, setCurrentPages] = useState([]);
-  const productsPerPage = 10;
+  const [currentProducts, setCurrentProducts] = useState([]);
+  const productsPerPage = 16;
+  const [formFilters, setFormFilters] = useState({
+    category: "",
+    price: "",
+  });
 
   useEffect(() => {
     getDataUser();
-    getProductsList(
-      configuration.Api,
-      configuration.Products,
-      configuration.Token
-    );
+    getProductsList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const PageStoreContainer = () => {
 
   useEffect(() => {
     getDataUser();
-    console.log("en usefeeectttt", isPopupVisible);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.points, isPopupVisible]);
 
   const getDataUser = async () => {
@@ -60,9 +62,9 @@ const PageStoreContainer = () => {
     });
   };
 
-  const getProductsList = async (api, hash, token) => {
-    let url = `${api}${hash}`;
-    let data = await getProducts(url, token);
+  const getProductsList = async () => {
+    let url = `${configuration.Api}${configuration.Products}`;
+    let data = await getProducts(url, configuration.Token);
     let resApi = await data.json();
     dispatch({
       type: "GET_PRODUCTS",
@@ -155,9 +157,17 @@ const PageStoreContainer = () => {
     }); */
   };
 
-  const showProducts = () => {
+  const displayProducts = () => {
+    let indexOfLastProducts = currentPage * productsPerPage;
+    let indexOfFirstProducts = indexOfLastProducts - productsPerPage;
     let productsArray = products.products ? products.products : [];
-    return productsArray.map((product, index) => {
+    setCurrentProducts(
+      productsArray.slice(indexOfFirstProducts, indexOfLastProducts)
+    );
+  };
+
+  const showProducts = () => {
+    return currentProducts.map((product, index) => {
       return (
         <Card
           key={index}
@@ -168,26 +178,24 @@ const PageStoreContainer = () => {
           cost={product.cost}
           availableUserPoints={user.points}
           postRedeemUserPoints={postRedeemUsePoints}
-          currentPages={currentPages}
         />
       );
     });
   };
-  const displayProducts = () => {
-    let indexOfLastProducts = currentPage * productsPerPage;
-    let indexOfFirstProducts = indexOfLastProducts - productsPerPage;
-    let productsQuantity = products.products ? products.products : [];
-    console.log(products.products);
-    console.log(indexOfLastProducts, indexOfFirstProducts, productsQuantity);
-    setCurrentPages(
-      productsQuantity.slice(indexOfFirstProducts, indexOfLastProducts)
-    );
+
+  const handleChangeFilter = (e) => {
+    setFormFilters({
+      ...formFilters,
+      [e.target.name]: e.target.value,
+    });
+    console.log(formFilters)
   };
 
   return (
     <>
       <TopProfile user={user} />
       <HeaderImage />
+      <FormFilter form={formFilters} onChange={handleChangeFilter} />
       <AddPoints
         addPointsForm={addPointsByUser}
         onChange={handleChangePoints}
@@ -210,7 +218,7 @@ const PageStoreContainer = () => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         productsPerPage={productsPerPage}
-        allProducts={products}
+        allProducts={products.products}
       />
     </>
   );

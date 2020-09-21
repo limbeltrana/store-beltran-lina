@@ -65,3 +65,18 @@ export const PostApiReddemPoints = async (url, data, token) => {
   }
 };
 
+export const getHistory = async (url, token) => {
+  try {
+    let config = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    return await fetch(url, config);
+  } catch (error) {
+    console.log(error);
+  }
+};

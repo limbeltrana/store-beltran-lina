@@ -4,22 +4,30 @@ const Pagination = ({
   currentPage,
   setCurrentPage,
   productsPerPage,
-  allProducts,
+  allProducts = [],
 }) => {
-  let range =
-    Math.ceil(allProducts.length / productsPerPage) > 10
-      ? 10
-      : Math.ceil(allProducts.length / productsPerPage);
-
+  const [productsArray, setProductsArray] = useState([]);
+  const [range, setRange] = useState(0);
   const [pageNumbers, setPageNumbers] = useState([]);
   const [minimumPage, setMinimumPage] = useState(0);
   const [maximumPage, setMaximumPage] = useState(minimumPage + range);
 
   useEffect(() => {
+    setProductsArray(allProducts);
+    let range =
+      Math.ceil(productsArray.length / productsPerPage) > 10
+        ? 10
+        : Math.ceil(productsArray.length / productsPerPage);
+    setRange(range);
     setMaximumPage(minimumPage + range);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [productsArray]);
+
+  useEffect(() => {
     let pageArrayTemp = [];
     for (let i = 0; i <= maximumPage; i++) {
       pageArrayTemp.push(minimumPage + i + 1);
+      console.log(pageArrayTemp);
       if (pageArrayTemp.length > 10) {
         pageArrayTemp.pop();
       }
@@ -29,10 +37,12 @@ const Pagination = ({
       pageArrayTemp[pageArrayTemp.length - 1] > maximumPage
     ) {
       pageArrayTemp.pop();
+      console.log("estoy entrando");
     }
+    console.log(pageArrayTemp);
     setPageNumbers(pageArrayTemp);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [minimumPage]);
+  }, [minimumPage, range]);
 
   const displayPageNumbers = pageNumbers.map((number) => (
     <li className="page-item" aria-current="page" key={number}>
@@ -74,7 +84,7 @@ const Pagination = ({
 
           {displayPageNumbers}
 
-          {maximumPage !== Math.ceil(allProducts.length / productsPerPage) ? (
+          {maximumPage !== Math.ceil(productsArray.length / productsPerPage) ? (
             <li className="page-item">
               <button
                 className="page-link"

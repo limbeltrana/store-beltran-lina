@@ -10,7 +10,7 @@ const CardUserResponse = ({ color, image, msg, setIsPopupVisible }) => (
         className="close-image"
         onClick={() => setIsPopupVisible(false)}
       />
-      <img src={image} alt="response-image" className="response-image" />
+      <img src={image} alt="response" className="response-image" />
       <p>{msg}</p>
     </div>
   </>

@@ -41,7 +41,7 @@ const Card = ({
           <div className="center-money-button">
             <div className="cardMoney">
               <p>{cost}</p>
-              <img src={Coin} />
+              <img src={Coin}  alt='coin-icon'/>
             </div>
             <button
               className="buttonReddem"
@@ -60,7 +60,7 @@ const Card = ({
       <div ref={youNeed} className="you-need">
         <div className="gray-chip">
           <p>Tu necesitas {cost - availableUserPoints}</p>
-          <img src={Coin} className="you-need-money" />
+          <img src={Coin} className="you-need-money" alt='coin-icon'/>
         </div>
       </div>
 
