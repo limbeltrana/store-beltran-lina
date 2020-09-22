@@ -32,6 +32,8 @@ const PageStoreContainer = () => {
     category: "",
     price: "",
   });
+  const [isCategoryDisabled, setIsCategoryDisabled] = useState(false);
+  const [isPriceDisabled, setIsPriceDisabled] = useState(false);
 
   useEffect(() => {
     getDataUser();
@@ -183,19 +185,81 @@ const PageStoreContainer = () => {
     });
   };
 
+  const filterDisabled = () => {
+    const { category, price } = formFilters;
+
+    if (category !== "" && category !== "0") {
+      setIsPriceDisabled(true);
+    } else {
+      setIsPriceDisabled(false);
+    }
+
+    if (price !== "" && price !== "ANY_PRICE") {
+      setIsCategoryDisabled(true);
+    } else {
+      setIsCategoryDisabled(false);
+    }
+  };
+
   const handleChangeFilter = (e) => {
     setFormFilters({
       ...formFilters,
       [e.target.name]: e.target.value,
     });
-    console.log(formFilters)
+  };
+
+  const tier = (price, product) => {
+    switch (price) {
+      case "ANY_PRICE":
+        return true;
+      case "SMALL_PRICE":
+        return product.cost >= 0 && product.cost <= 300;
+      case "MEDIUM_PRICE":
+        return product.cost >= 301 && product.cost <= 600;
+      case "LARGE_PRICE":
+        return product.cost >= 601 && product.cost <= 1000;
+      case "EXPENSIVE":
+        return product.cost > 1000;
+      default:
+        return true;
+    }
+  };
+
+  const filter = () => {
+    let productsArray = products.products ? products.products : [];
+    console.log(productsArray);
+    const { category, price } = formFilters;
+    let filteredProducts = productsArray.filter((product) => {
+      if (!category && !price) {
+        return true;
+      } else {
+        return category && category !== '0'
+          ? product.category.indexOf(category) > -1
+          : true || price !== "" && price !== "ANY_PRICE"
+          ? tier(price, product)
+          : true;
+      }
+    });
+    console.log(filteredProducts);
+  };
+
+  const handleSubmitFilter = (e) => {
+    e.preventDefault();
+    filter();
   };
 
   return (
     <>
       <TopProfile user={user} />
       <HeaderImage />
-      <FormFilter form={formFilters} onChange={handleChangeFilter} />
+      <FormFilter
+        form={formFilters}
+        onChange={handleChangeFilter}
+        onSubmit={handleSubmitFilter}
+        filterDisabled={filterDisabled}
+        isCategoryDisabled={isCategoryDisabled}
+        isPriceDisabled={isPriceDisabled}
+      />
       <AddPoints
         addPointsForm={addPointsByUser}
         onChange={handleChangePoints}

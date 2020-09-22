@@ -666,6 +666,8 @@ body {
   position: sticky !important;
   top: 250px;
   z-index: 10000;
+  width: fit-content;
+  margin: 0 !important;
 }
 
 .btn-primary {
@@ -705,4 +707,3 @@ body {
   align-self: center;
   margin: 1rem 2rem 0.5rem 2rem;
 }
-
