@@ -24,9 +24,6 @@ const Card = ({
           return (youNeed.current.style.visibility = "visible");
         }
       }}
-      /*  onMouseOver={() =>
-        (overlayContainer.current.style.visibility = "visible")
-      } */
       onMouseOut={() => {
         overlayContainer.current.style.visibility = "hidden";
         youNeed.current.style.visibility = "hidden";
@@ -46,8 +43,6 @@ const Card = ({
             <button
               className="buttonReddem"
               onClick={() => {
-                console.log(productId);
-                console.log(productName);
                 postRedeemUserPoints(productId);
               }}
             >

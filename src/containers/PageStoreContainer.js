@@ -54,6 +54,7 @@ const PageStoreContainer = () => {
 
   useEffect(() => {
     displayProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredProducts]);
 
   const getDataUser = async () => {
@@ -94,9 +95,7 @@ const PageStoreContainer = () => {
       JSON.stringify(pointsToSend),
       configuration.Token
     );
-    console.log(JSON.stringify(pointsToSend));
     let resApi = await data.json();
-    console.log(resApi);
     if (resApi.message === "Points Updated") {
       setIsPopupVisible(true);
       setCardColor(
@@ -128,34 +127,15 @@ const PageStoreContainer = () => {
     postAddPointsUser();
   };
 
-  /*  function alertFunction() {
-    setIsPopupVisible(true);
-    setCardColor(
-      "linear-gradient(45deg, #fbb59d, #f6a69c, #f1979c, #f08f9c, #ee8d9b)"
-    );
-    setResponseImg(successImg);
-    setMessageToUser("Tu compra fue exitosa!!");
-  }
-
-  function myFunction() {
-    setTimeout(alertFunction, 10000);
-    console.log("me cambieeeeee", isPopupVisible);
-  }
-  myFunction(); */
-
   const postRedeemUsePoints = async (Id) => {
     let url = `${configuration.Api}${configuration.RedeemPoints}`;
     let productId = { productId: Id };
-    console.log(productId);
     let data = await PostApiReddemPoints(
       url,
       JSON.stringify(productId),
       configuration.Token
     );
-    console.log(JSON.stringify(productId));
     let resApi = await data.json();
-    console.log("esta es la respuesta del api", resApi);
-    console.log("esto es data", data);
     if (resApi.message === "You've redeem the product successfully") {
       setIsPopupVisible(true);
       setCardColor(
@@ -173,26 +153,17 @@ const PageStoreContainer = () => {
         "Lo sentimos hubo un inconveniente por favor intenta de nuevo!!"
       );
     }
-    /* dispatch({
-      type: "GET_USER",
-      user: {
-        ...user,
-        points: resApi["New Points"],
-      },
-    }); */
   };
 
   const displayProducts = () => {
     let indexOfLastProducts = currentPage * productsPerPage;
     let indexOfFirstProducts = indexOfLastProducts - productsPerPage;
-    //let productsArray = products.products ? products.products : [];
     let productsArray =
       filteredProducts.length > 0
         ? filteredProducts
         : products.products
         ? products.products
         : [];
-    console.log(productsArray);
     setCurrentProducts(
       productsArray.slice(indexOfFirstProducts, indexOfLastProducts)
     );
@@ -257,7 +228,6 @@ const PageStoreContainer = () => {
 
   const filter = () => {
     let productsArray = products.products ? products.products : [];
-    console.log(productsArray);
     const { category, price } = formFilters;
     let filteredProducts = productsArray.filter((product) => {
       if (!category && !price) {
@@ -270,7 +240,6 @@ const PageStoreContainer = () => {
           : true;
       }
     });
-    console.log(filteredProducts);
     setIsFilteredProducts(filteredProducts);
   };
 
@@ -320,11 +289,6 @@ const PageStoreContainer = () => {
             ? products.products
             : []
         }
-        /* filteredProducts.length >0
-        ? filteredProducts
-        : products.products
-        ? products.products
-        : []; */
       />
     </>
   );

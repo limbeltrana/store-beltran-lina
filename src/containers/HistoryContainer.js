@@ -8,7 +8,6 @@ import { CardDeck, Container } from "react-bootstrap";
 const HistoryContainer = () => {
   const [{ productsHistory }, dispatch] = useStateValue();
 
-  console.log(productsHistory);
   useEffect(() => {
     getUserHistory();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -22,15 +21,7 @@ const HistoryContainer = () => {
       type: "GET_HISTORY",
       productsHistory: resApi,
     });
-    console.log(Object.entries(productsHistory));
   };
-
-  /*  {
-    Object.values(productsHistory).map((key, value) => {
-      console.log(key);
-      return <li>{key.category}</li>;
-    });
-  } */
 
   const showProducts = () => {
     return Object.values(productsHistory).map((product, index) => {
