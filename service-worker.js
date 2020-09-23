@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/store-beltran-lina/precache-manifest.11f502407d9421b6d4907343ad550f84.js"
+  "/store-beltran-lina/precache-manifest.ce0b48d0b405715ff81550b1aee70ee8.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3d7818ea1fa90e1cca5eec6af4515d11",
+    "revision": "ded8f01a5f25067d10221ef952f9fda8",
     "url": "/store-beltran-lina/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/store-beltran-lina/static/css/2.d9ad5f5c.chunk.css"
   },
   {
-    "revision": "c51f9ba0fcda88f8455b",
+    "revision": "398b401b079ab7ce529b",
     "url": "/store-beltran-lina/static/css/main.d2b6eedc.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/store-beltran-lina/static/js/2.013eaac1.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "c51f9ba0fcda88f8455b",
-    "url": "/store-beltran-lina/static/js/main.08f701ef.chunk.js"
+    "revision": "398b401b079ab7ce529b",
+    "url": "/store-beltran-lina/static/js/main.97596a75.chunk.js"
   },
   {
     "revision": "8a1b984df1836e025a88",
