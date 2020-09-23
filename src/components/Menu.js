@@ -9,7 +9,7 @@ const Menu = () => {
       <Dropdown.Toggle id="dropdown-basic">Menú</Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item onClick={() => history.push("/")}>
+        <Dropdown.Item onClick={() => history.push("/store-beltran-lina")}>
           Pagina de canje
         </Dropdown.Item>
 

@@ -7,7 +7,7 @@ import Container from "react-bootstrap/Container";
 import PageStoreContainer from "./containers/PageStoreContainer";
 import mainReducer from "./context/reducers/mainReducer";
 import HistoryContainer from "./containers/HistoryContainer";
-import Menu from './components/Menu'
+import Menu from "./components/Menu";
 
 function App() {
   const initialState = {
@@ -22,13 +22,17 @@ function App() {
   return (
     <StateProvider initialState={initialState} reducer={mainReducer}>
       <BrowserRouter>
-      <Menu/>
+        <Menu />
         <Switch>
           <>
-          <Container fluid>
-            <Route exact path="/" component={PageStoreContainer} />
-            <Route exact path="/history" component={HistoryContainer} />
-          </Container>
+            <Container fluid>
+              <Route
+                exact
+                path="/store-beltran-lina"
+                component={PageStoreContainer}
+              />
+              <Route exact path="/history" component={HistoryContainer} />
+            </Container>
           </>
         </Switch>
       </BrowserRouter>
