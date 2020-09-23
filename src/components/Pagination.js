@@ -4,7 +4,7 @@ const Pagination = ({
   currentPage,
   setCurrentPage,
   productsPerPage,
-  allProducts = [],
+  allProducts,
 }) => {
   const [productsArray, setProductsArray] = useState([]);
   const [range, setRange] = useState(0);
@@ -14,6 +14,9 @@ const Pagination = ({
 
   useEffect(() => {
     setProductsArray(allProducts);
+    console.log('eretqaddaretagd',allProducts)
+  });
+  useEffect(() => {
     let range =
       Math.ceil(productsArray.length / productsPerPage) > 10
         ? 10

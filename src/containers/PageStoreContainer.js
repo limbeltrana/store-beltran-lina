@@ -34,6 +34,7 @@ const PageStoreContainer = () => {
   });
   const [isCategoryDisabled, setIsCategoryDisabled] = useState(false);
   const [isPriceDisabled, setIsPriceDisabled] = useState(false);
+  const [filteredProducts, setIsFilteredProducts] = useState([]);
 
   useEffect(() => {
     getDataUser();
@@ -50,6 +51,10 @@ const PageStoreContainer = () => {
     getDataUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user.points, isPopupVisible]);
+
+  useEffect(() => {
+    displayProducts();
+  }, [filteredProducts]);
 
   const getDataUser = async () => {
     let url = `${configuration.Api}${configuration.User}`;
@@ -132,7 +137,8 @@ const PageStoreContainer = () => {
     );
     console.log(JSON.stringify(productId));
     let resApi = await data.json();
-    console.log(resApi);
+    console.log( 'esta es la respuesta del api',resApi);
+    console.log('esto es data', data)
     if (resApi.message === "You've redeem the product successfully") {
       setIsPopupVisible(true);
       setCardColor(
@@ -162,7 +168,11 @@ const PageStoreContainer = () => {
   const displayProducts = () => {
     let indexOfLastProducts = currentPage * productsPerPage;
     let indexOfFirstProducts = indexOfLastProducts - productsPerPage;
-    let productsArray = products.products ? products.products : [];
+    //let productsArray = products.products ? products.products : [];
+    let productsArray =
+      filteredProducts.length > 0
+        ? filteredProducts : products.products ? products.products : [];
+    console.log(productsArray);
     setCurrentProducts(
       productsArray.slice(indexOfFirstProducts, indexOfLastProducts)
     );
@@ -233,14 +243,15 @@ const PageStoreContainer = () => {
       if (!category && !price) {
         return true;
       } else {
-        return category && category !== '0'
+        return category && category !== "0"
           ? product.category.indexOf(category) > -1
-          : true || price !== "" && price !== "ANY_PRICE"
+          : true || (price !== "" && price !== "ANY_PRICE")
           ? tier(price, product)
           : true;
       }
     });
     console.log(filteredProducts);
+    setIsFilteredProducts(filteredProducts);
   };
 
   const handleSubmitFilter = (e) => {
@@ -282,7 +293,16 @@ const PageStoreContainer = () => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         productsPerPage={productsPerPage}
-        allProducts={products.products}
+        allProducts={filteredProducts.length >0
+        ? filteredProducts
+        : products.products
+        ? products.products
+        : []}
+        /* filteredProducts.length >0
+        ? filteredProducts
+        : products.products
+        ? products.products
+        : []; */
       />
     </>
   );

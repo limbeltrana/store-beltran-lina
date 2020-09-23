@@ -51,7 +51,7 @@ const FormFilter = ({
             <option value="SMALL_PRICE">0 - 300</option>
             <option value="MEDIUM_PRICE">301 - 600</option>
             <option value="LARGE_PRICE">601 - 1000</option>
-            <option value="EXPENSIVE"> > 1000</option>
+            <option value="EXPENSIVE"> Mayor a 1000</option>
           </Form.Control>
         </Form.Group>
 
