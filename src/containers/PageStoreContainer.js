@@ -97,6 +97,23 @@ const PageStoreContainer = () => {
     console.log(JSON.stringify(pointsToSend));
     let resApi = await data.json();
     console.log(resApi);
+    if (resApi.message === "Points Updated") {
+      setIsPopupVisible(true);
+      setCardColor(
+        "linear-gradient(45deg, #fbb59d, #f6a69c, #f1979c, #f08f9c, #ee8d9b)"
+      );
+      setResponseImg(successImg);
+      setMessageToUser("Tus puntos fueron actualizados exitosamente!!");
+    } else {
+      setIsPopupVisible(true);
+      setResponseImg(failImg);
+      setCardColor(
+        "linear-gradient(215deg, rgba(157,218,168,1) 0%, rgba(165,218,150,1) 20%, rgba(165,218,150,1) 40%, rgba(171,218,135,1) 60%, rgba(173,218,132,1) 80%, rgba(176,219,125,1) 100%)"
+      );
+      setMessageToUser(
+        "Lo sentimos hubo un inconveniente por favor intenta de nuevo!!"
+      );
+    }
     dispatch({
       type: "GET_USER",
       user: {
@@ -137,8 +154,8 @@ const PageStoreContainer = () => {
     );
     console.log(JSON.stringify(productId));
     let resApi = await data.json();
-    console.log( 'esta es la respuesta del api',resApi);
-    console.log('esto es data', data)
+    console.log("esta es la respuesta del api", resApi);
+    console.log("esto es data", data);
     if (resApi.message === "You've redeem the product successfully") {
       setIsPopupVisible(true);
       setCardColor(
@@ -171,7 +188,10 @@ const PageStoreContainer = () => {
     //let productsArray = products.products ? products.products : [];
     let productsArray =
       filteredProducts.length > 0
-        ? filteredProducts : products.products ? products.products : [];
+        ? filteredProducts
+        : products.products
+        ? products.products
+        : [];
     console.log(productsArray);
     setCurrentProducts(
       productsArray.slice(indexOfFirstProducts, indexOfLastProducts)
@@ -293,11 +313,13 @@ const PageStoreContainer = () => {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         productsPerPage={productsPerPage}
-        allProducts={filteredProducts.length >0
-        ? filteredProducts
-        : products.products
-        ? products.products
-        : []}
+        allProducts={
+          filteredProducts.length > 0
+            ? filteredProducts
+            : products.products
+            ? products.products
+            : []
+        }
         /* filteredProducts.length >0
         ? filteredProducts
         : products.products

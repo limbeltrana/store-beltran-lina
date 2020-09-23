@@ -27,10 +27,10 @@ const Card = ({
       /*  onMouseOver={() =>
         (overlayContainer.current.style.visibility = "visible")
       } */
-      onMouseOut={() => (
-        (overlayContainer.current.style.visibility = "hidden"),
-        (youNeed.current.style.visibility = "hidden")
-      )}
+      onMouseOut={() => {
+        overlayContainer.current.style.visibility = "hidden";
+        youNeed.current.style.visibility = "hidden";
+      }}
     >
       <div ref={overlayContainer} className="overlayCard">
         <div className="overlay_card_inner">

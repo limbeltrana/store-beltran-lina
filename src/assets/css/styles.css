@@ -650,7 +650,9 @@ body {
 
 @media (min-width: 576px) {
   .card-deck .card {
-    /* flex: 1 0; */
+    flex-grow: unset !important;
+    flex-shrink: unset !important;
+    flex-basis: unset !important;
     margin-right: 15px !important;
     margin-bottom: 15px !important;
     margin-left: 15px !important;
@@ -658,8 +660,9 @@ body {
   }
 }
 .card-deck .card img {
-  width: 252px;
-  height: 182px;
+  max-width: 252px;
+  max-height: 182px;
+  border-radius: 2rem;
 }
 
 .dropdown {

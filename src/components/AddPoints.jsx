@@ -7,7 +7,6 @@ const AddPoints = ({ onChange, onSubmit} ) => {
         <form onSubmit ={onSubmit}>
           <div className="buttonPoint">
             <div className="roundedBackForm">
-              {/* <p>1000</p> */}
               <div className="selection">
                 <input
                   type="radio"
@@ -23,7 +22,7 @@ const AddPoints = ({ onChange, onSubmit} ) => {
 
           <div className="buttonPoint2">
             <div className="roundedBackForm2">
-              {/* <p>1000</p> */}
+
               <div className="selection">
                 <input
                   type="radio"
@@ -39,7 +38,6 @@ const AddPoints = ({ onChange, onSubmit} ) => {
 
           <div className="buttonPoint3">
             <div className="roundedBackForm3">
-              {/* <p>1000</p> */}
               <div className="selection">
                 <input
                   type="radio"
